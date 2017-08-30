@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * AutosuggestPlaceDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T14:30:56.539+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T14:32:54.673+02:00")
 public class AutosuggestPlaceDto   {
   @SerializedName("PlaceId")
   private Integer placeId = null;

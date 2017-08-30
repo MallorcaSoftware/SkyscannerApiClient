@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * RouteDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T14:30:56.539+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T14:32:54.673+02:00")
 public class RouteDto   {
   @SerializedName("OriginId")
   private Integer originId = null;

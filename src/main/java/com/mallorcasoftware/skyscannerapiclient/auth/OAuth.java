@@ -30,7 +30,7 @@ import com.mallorcasoftware.skyscannerapiclient.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T14:30:56.539+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T14:32:54.673+02:00")
 public class OAuth implements Authentication {
   private String accessToken;
 
