@@ -1,0 +1,441 @@
+swagger: '2.0'
+
+info:
+  version: "0.0.1"
+  title: SkyscannerApiClient
+  description:  Java api client for skyscanner API
+  
+securityDefinitions:
+  UserSecurity:
+    type: apiKey
+    in: query
+    name: apiKey
+    description: The API Key to identify the customer
+    
+security:
+- UserSecurity: []
+  
+host: partners.api.skyscanner.net
+basePath: /apiservices
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /autosuggest/v1.0/{country}/{currency}/{locale}:
+    get:
+      tags:
+        - Places
+      operationId: autosuggest
+      description: |
+        Get a list of places that match a query string.
+      parameters:
+        -
+          name: country
+          in: path
+          description: The market country your user is in
+          required: true
+          type: string
+        -
+          name: currency
+          in: path
+          description: The currency you want the prices in
+          required: true
+          type: string
+        -
+          name: locale
+          in: path
+          description: The locale you want the results in (ISO locale)
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/AutosuggestResponseDto'
+  /reference/v1.0/locales:
+    get:
+      tags:
+        - General
+      operationId: locales
+      description: |
+        Retrieve the locales that we support to translate your content.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/LocalesResponseDto'
+  /reference/v1.0/currencies:
+    get:
+      tags:
+        - General
+      operationId: currencies
+      description: |
+        Retrieve the currencies that we support.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/CurrenciesResponseDto'
+  /browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}:
+    get:
+      tags:
+        - Flights Browse Prices
+      operationId: browseQuotes
+      description: |
+        Retrieve the cheapest quotes from our cache prices.
+      parameters:
+        -
+          name: country
+          in: path
+          description: The market country your user is in
+          required: true
+          type: string
+        -
+          name: currency
+          in: path
+          description: The currency you want the prices in
+          required: true
+          type: string
+        -
+          name: locale
+          in: path
+          description: The locale you want the results in (ISO locale)
+          required: true
+          type: string
+        -
+          name: originPlace
+          in: path
+          description: The origin place (see places)
+          required: true
+          type: string
+        -
+          name: destinationPlace
+          in: path
+          description: The destination place (see places)
+          required: true
+          type: string
+        -
+          name: outboundPartialDate
+          in: path
+          description: The outbound date. Format “yyyy-mm-dd”, “yyyy-mm” or “anytime”.
+          required: true
+          type: string
+        -
+          name: inboundPartialDate
+          in: path
+          description: The return date. Format “yyyy-mm-dd”, “yyyy-mm” or “anytime”. Use empty string for oneway trip.
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/BrowseQuotesResponseDto'
+  /browseroutes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}:
+    get:
+      tags:
+        - Flights Browse Prices
+      operationId: browseRoutes
+      description: |
+        Retrieve the cheapest routes from our cache prices. Similar to the Browse Quotes API but with the routes built for you from the individual quotes.
+      parameters:
+        -
+          name: country
+          in: path
+          description: The market country your user is in
+          required: true
+          type: string
+        -
+          name: currency
+          in: path
+          description: The currency you want the prices in
+          required: true
+          type: string
+        -
+          name: locale
+          in: path
+          description: The locale you want the results in (ISO locale)
+          required: true
+          type: string
+        -
+          name: originPlace
+          in: path
+          description: The origin place (see places)
+          required: true
+          type: string
+        -
+          name: destinationPlace
+          in: path
+          description: The destination place (see places)
+          required: true
+          type: string
+        -
+          name: outboundPartialDate
+          in: path
+          description: The outbound date. Format “yyyy-mm-dd”, “yyyy-mm” or “anytime”.
+          required: true
+          type: string
+        -
+          name: inboundPartialDate
+          in: path
+          description: The return date. Format “yyyy-mm-dd”, “yyyy-mm” or “anytime”. Use empty string for oneway trip.
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/BrowseRoutesResponseDto'
+  /browsedates/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}:
+    get:
+      tags:
+        - Flights Browse Prices
+      operationId: browseDates
+      description: |
+        Retrieve the cheapest dates for a given route from our cache.
+      parameters:
+        -
+          name: country
+          in: path
+          description: The market country your user is in
+          required: true
+          type: string
+        -
+          name: currency
+          in: path
+          description: The currency you want the prices in
+          required: true
+          type: string
+        -
+          name: locale
+          in: path
+          description: The locale you want the results in (ISO locale)
+          required: true
+          type: string
+        -
+          name: originPlace
+          in: path
+          description: The origin place (see places)
+          required: true
+          type: string
+        -
+          name: destinationPlace
+          in: path
+          description: The destination place (see places)
+          required: true
+          type: string
+        -
+          name: outboundPartialDate
+          in: path
+          description: The outbound date. Format “yyyy-mm-dd”, “yyyy-mm” or “anytime”.
+          required: true
+          type: string
+        -
+          name: inboundPartialDate
+          in: path
+          description: The return date. Format “yyyy-mm-dd”, “yyyy-mm” or “anytime”. Use empty string for oneway trip.
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/BrowseDatesResponseDto'
+definitions:
+  LocaleDto:
+    type: object
+    properties:
+      Code:
+        type: string
+      Name:
+        type: string
+  LegDto:
+    type: object
+    properties:
+      CarrierIds:
+        type: array
+        items:
+          type: integer
+      OriginId:
+        type: integer
+      DestinationId:
+        type: integer
+      DepartureDate:
+        type: string
+        format: datetime
+  QuoteDto:
+    type: object
+    properties:
+      QuoteId:
+        type: integer
+      MinPrice:
+        type: integer
+      Direct:
+        type: boolean
+      OutboundLeg:
+        $ref: '#/definitions/LegDto'
+      InboundLeg:
+        $ref: '#/definitions/LegDto'
+      QuoteDateTime:
+        type: string
+        format: datetime
+  AutosuggestPlaceDto:
+    type: object
+    properties:
+      PlaceId:
+        type: integer
+      PlaceName:
+        type: string
+      CountryId:
+        type: string
+      RegionId:
+        type: string
+      CityId:
+        type: string
+      CountryName:
+        type: string
+  PlaceDto:
+    type: object
+    properties:
+      PlaceId:
+        type: integer
+      Name:
+        type: string
+      Type:
+        type: string
+      SkyscannerCode:
+        type: string
+  CarrierDto:
+    type: object
+    properties:
+      CarrierId:
+        type: integer
+      Name:
+        type: string
+  CurrencyDto:
+    type: object
+    properties:
+      Code:
+        type: string
+      Symbol:
+        type: string
+      ThousandsSeparator:
+        type: string
+      DecimalSeparator:
+        type: string
+      SymbolOnLeft:
+        type: boolean
+      SpaceBetweenAmountAndSymbol:
+        type: boolean
+      RoundingCoefficient:
+        type: integer
+      DecimalDigits:
+        type: integer
+  RouteDto:
+    type: object
+    properties:
+      OriginId:
+        type: integer
+      DestinationId:
+        type: integer
+      QuoteIds:
+        type: array
+        items: 
+          type: integer
+      Price:
+        type: integer
+      QuoteDateTime:
+        type: string
+        format: datetime
+  DateDto:
+    type: object
+  BrowseQuotesResponseDto:
+    type: object
+    properties:
+      Quotes:
+        type: array
+        items:
+          $ref: '#/definitions/QuoteDto'
+      Places:
+        type: array
+        items:
+          $ref: '#/definitions/PlaceDto'
+      Carriers:
+        type: array
+        items:
+          $ref: '#/definitions/CarrierDto'
+      Currencies:
+        type: array
+        items:
+          $ref: '#/definitions/CurrencyDto'
+  BrowseRoutesResponseDto:
+    type: object
+    properties:
+      Routes:
+        type: array
+        items:
+          $ref: '#/definitions/RouteDto'
+      Quotes:
+        type: array
+        items:
+          $ref: '#/definitions/QuoteDto'
+      Places:
+        type: array
+        items:
+          $ref: '#/definitions/PlaceDto'
+      Carriers:
+        type: array
+        items:
+          $ref: '#/definitions/CarrierDto'
+      Currencies:
+        type: array
+        items:
+          $ref: '#/definitions/CurrencyDto'
+  BrowseDatesResponseDto:
+    type: object
+    properties:
+      Dates:
+        type: array
+        items:
+          $ref: '#/definitions/DateDto'
+      Quotes:
+        type: array
+        items:
+          $ref: '#/definitions/QuoteDto'
+      Places:
+        type: array
+        items:
+          $ref: '#/definitions/PlaceDto'
+      Carriers:
+        type: array
+        items:
+          $ref: '#/definitions/CarrierDto'
+      Currencies:
+        type: array
+        items:
+          $ref: '#/definitions/CurrencyDto'
+  LocalesResponseDto:
+    type: object
+    properties:
+      Locales:
+        type: array
+        items:
+          $ref: '#/definitions/LocaleDto'
+  CurrenciesResponseDto:
+    type: object
+    properties:
+      Currencies:
+        type: array
+        items:
+          $ref: '#/definitions/CurrencyDto'
+  AutosuggestResponseDto:
+    type: object
+    properties:
+      Places:
+        type: array
+        items:
+          $ref: '#/definitions/AutosuggestPlaceDto'

@@ -1,0 +1,6 @@
+{
+	"modelPackage": "com.mallorcasoftware.skyscannerapiclient.model",
+	"apiPackage": "com.mallorcasoftware.skyscannerapiclient.api",
+	"groupId": "com.mallorcasoftware",
+	"artifactId": "skyscannerapiclient"
+}
